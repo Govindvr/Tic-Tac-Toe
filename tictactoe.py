@@ -67,22 +67,22 @@ def check_result():
     for i in range(0,7,3):
         if value[i]==value[i+1]==value[i+2]:
             print("you won")
-            return
+            return False 
 
     for i in range(3):
         if value[i]==value[i+3]==value[i+6]:
             print("you won")
-            return 
+            return False 
 
     if value[0]==value[4]==value[8]: 
         print("you won")
-        return 
+        return False 
 
     if value[2]==value[4]==value[6]: 
         print("you won")
-        return 
+        return False 
+    return True
 
-    print("you lost")
         
 def display():
     print("\n")
@@ -98,6 +98,20 @@ if user == "X":
 else:
     AI = "X"
 instructions()
+loop = True
+
+while(loop):
+    if user == "X":
+        choice = int(input("\nEnter your choice: "))
+        input_values(user,choice)
+        computer(user, AI)
+        loop = check_result()
+    else:
+        computer(user, AI)
+        choice = int(input("\nEnter your choice: "))
+        input_values(user,choice)
+        loop = check_result()
+
 
 
 
