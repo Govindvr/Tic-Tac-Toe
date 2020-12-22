@@ -32,7 +32,7 @@ def computer(markp,markc):
             else:
                 value[i]=markc
 
-    def comp_logic(mark):
+    def comp_logic(mark,id = 2):
             if row1.count(mark)==2:
                 scan(0,3,1)
             elif row2.count(mark)==2:
@@ -50,7 +50,9 @@ def computer(markp,markc):
             elif dia2.count(mark)==2:
                 scan(2,7,2)
             else:
-                if value[4]== " ":
+                if id == 1:
+                    return True
+                elif value[4]== " ":
                     value[4]=markc
                 else:
                     for i in corner:
@@ -58,27 +60,28 @@ def computer(markp,markc):
                             value[i]==markc
                         else:
                             print("error")
+                return False
     
-    comp_logic(markc)
-    comp_logic(markp)
+    if comp_logic(markc,1):
+        comp_logic(markp)
        
 def check_result():
 
     for i in range(0,7,3):
-        if value[i]==value[i+1]==value[i+2]:
+        if (value[i]==value[i+1]) and (value[i+1]==value[i+2]):
             print("you won")
             return False 
 
     for i in range(3):
-        if value[i]==value[i+3]==value[i+6]:
+        if (value[i]==value[i+3]) and (value[i+3]==value[i+6]):
             print("you won")
             return False 
 
-    if value[0]==value[4]==value[8]: 
+    if (value[0]==value[4]) and (value[4]==value[8]): 
         print("you won")
         return False 
 
-    if value[2]==value[4]==value[6]: 
+    if (value[2]==value[4]) and (value[4]==value[6]): 
         print("you won")
         return False 
     return True
@@ -94,10 +97,11 @@ def display():
 user=input("\n\t\tchoose your letter (X or O)")
 user = user.upper()
 if user == "X":
-    AI = "Y"
+    AI = "O"
 else:
     AI = "X"
 instructions()
+
 loop = True
 
 while(loop):
@@ -105,11 +109,13 @@ while(loop):
         choice = int(input("\nEnter your choice: "))
         input_values(user,choice)
         computer(user, AI)
+        display()
         loop = check_result()
     else:
         computer(user, AI)
+        display()
         choice = int(input("\nEnter your choice: "))
-        input_values(user,choice)
+        input_values(user,choice)        
         loop = check_result()
 
 
