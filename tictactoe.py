@@ -27,10 +27,8 @@ def computer(markp,markc):
 
     def scan(first,last,skip):
         for i in range(first,last,skip):
-            if (value[i] == markc) or (value[i] == markp):
-                continue
-            else:
-                value[i]=markc
+            if value[i] == " ":
+                value[i] = markc
 
     def comp_logic(mark,id = 2):
             if row1.count(mark)==2:
@@ -58,8 +56,9 @@ def computer(markp,markc):
                     for i in corner:
                         if value[i]==" ":
                             value[i] = markc
+                            break
                 return False
-    
+                
     if comp_logic(markc,1):
         comp_logic(markp)
        
@@ -93,7 +92,7 @@ def check_result(markp,markc):
 def display():
     print("\n")
     for i in range(0,7,3):
-        print("\t\t\t",value[i],"|",value[i+1],"|",value[1+2])
+        print("\t\t\t",value[i],"|",value[i+1],"|",value[i+2])
         print("\t\t\t-----------")
     print("\n-------------------------------------------------------")
 
