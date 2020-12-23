@@ -52,14 +52,13 @@ def computer(markp,markc):
             else:
                 if id == 1:
                     return True
-                elif value[4]== " ":
+                elif value[4] == " ":
                     value[4]=markc
                 else:
                     for i in corner:
                         if value[i]==" ":
-                            value[i]==markc
-                        else:
-                            print("error")
+                            value[i] = markc
+                            return
                 return False
     
     if comp_logic(markc,1):
@@ -68,20 +67,20 @@ def computer(markp,markc):
 def check_result():
 
     for i in range(0,7,3):
-        if (value[i]==value[i+1]) and (value[i+1]==value[i+2]):
+        if (value[i]==value[i+1]== value[i+2]) and value[i] != " ":
             print("you won")
             return False 
 
     for i in range(3):
-        if (value[i]==value[i+3]) and (value[i+3]==value[i+6]):
+        if (value[i]==value[i+3]==value[i+6]) and value[i] !=" ":
             print("you won")
             return False 
 
-    if (value[0]==value[4]) and (value[4]==value[8]): 
+    if (value[0]==value[4]==value[8]) and value[0] != " ": 
         print("you won")
         return False 
 
-    if (value[2]==value[4]) and (value[4]==value[6]): 
+    if (value[2]==value[4]==value[6]) and value[2] != " ": 
         print("you won")
         return False 
     return True
