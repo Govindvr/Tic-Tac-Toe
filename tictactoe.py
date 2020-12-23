@@ -13,7 +13,7 @@ def instructions():
 def input_values(markp,markc,pos):
     positon =  pos -1
     if value[positon]==markc:
-        print("\t\t\timpossible")
+        print("\t\t\tDON'T EVEN TRY, STUPID CHEATER!!!")
         exit(0)
     value[positon] = markp
 
@@ -57,11 +57,13 @@ def computer(markp,markc):
                     return True
                 elif value[4] == " ":
                     value[4]=markc
+                elif value.count(" ")==1:
+                    value[value.index(" ")] = markc
                 else:
                     for i in corner:
                         if value[i]==" ":
                             value[i] = markc
-                            break
+                            break                    
                 return False
 
     if comp_logic(markc,1):
@@ -70,39 +72,36 @@ def computer(markp,markc):
 def check_result(markp,markc):
     def who(w):
         if value[w] == markp:
-                print("you won")
+                print("\t\t\tSomthing went wrong, you won!")
         else:
-            print("compuer won")
+            print("\t\t\tHAHA NOOB!!!, COMPUTER WON ")
             exit(0)
 
     for i in range(0,7,3):
         if (value[i]==value[i+1]== value[i+2]) and value[i] != " ":                  
             who(i)
             return False 
-
     for i in range(3):
         if (value[i]==value[i+3]==value[i+6]) and value[i] !=" ":
             who(i)
             return False 
-
     if (value[0]==value[4]==value[8]) and value[0] != " ": 
         who(0)
         return False 
-
     if (value[2]==value[4]==value[6]) and value[2] != " ": 
         who(2)
         return False 
     if value.count(" ") == 0:
-        print("Draw")
+        print("\t\t\tFINALLY!!, A WORTHY OPPONENT, Its a Draw!!!")
         return False
     return True
-
         
 def display():
     print("\n")
+    print("\t\t\t-------------")
     for i in range(0,7,3):
-        print("\t\t\t",value[i],"|",value[i+1],"|",value[i+2])
-        print("\t\t\t-----------")
+        print("\t\t\t|",value[i],"|",value[i+1],"|",value[i+2],"|")
+        print("\t\t\t-------------")
     print("\n-------------------------------------------------------")
 
 user=input("\n\t\tchoose your letter (X or O)")
@@ -114,7 +113,6 @@ else:
 instructions()
 
 loop = True
-
 while(loop):
     if user == "X":
         choice = int(input("\nEnter your choice: "))
@@ -129,7 +127,3 @@ while(loop):
         choice = int(input("\nEnter your choice: "))
         input_values(user,AI,choice)        
         loop = check_result(user,AI)
-
-
-
-
