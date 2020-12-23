@@ -24,10 +24,10 @@ def computer(markp,markc):
     dia1 = [value[0],value[4],value[8]]
     dia2 = [value[2],value[4],value[6]]
     corner = [0,2,6,8]
-    
+
     def scan(first,last,skip):
         for i in range(first,last,skip):
-            if value[i]==markp:
+            if (value[i] == markc) or (value[i] == markp):
                 continue
             else:
                 value[i]=markc
@@ -58,30 +58,34 @@ def computer(markp,markc):
                     for i in corner:
                         if value[i]==" ":
                             value[i] = markc
-                            return
                 return False
     
     if comp_logic(markc,1):
         comp_logic(markp)
        
-def check_result():
+def check_result(markp,markc):
+    def who(w):
+        if value[w] == marp:
+                print("you won")
+            else:
+                print("compuer won")
 
     for i in range(0,7,3):
-        if (value[i]==value[i+1]== value[i+2]) and value[i] != " ":
-            print("you won")
+        if (value[i]==value[i+1]== value[i+2]) and value[i] != " ":                  
+            who(i)
             return False 
 
     for i in range(3):
         if (value[i]==value[i+3]==value[i+6]) and value[i] !=" ":
-            print("you won")
+            who(i)
             return False 
 
     if (value[0]==value[4]==value[8]) and value[0] != " ": 
-        print("you won")
+        who(0)
         return False 
 
     if (value[2]==value[4]==value[6]) and value[2] != " ": 
-        print("you won")
+        who(2)
         return False 
     return True
 
