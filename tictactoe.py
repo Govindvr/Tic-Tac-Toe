@@ -65,10 +65,10 @@ def computer(markp,markc):
        
 def check_result(markp,markc):
     def who(w):
-        if value[w] == marp:
+        if value[w] == markp:
                 print("you won")
-            else:
-                print("compuer won")
+        else:
+            print("compuer won")
 
     for i in range(0,7,3):
         if (value[i]==value[i+1]== value[i+2]) and value[i] != " ":                  
@@ -113,13 +113,13 @@ while(loop):
         input_values(user,choice)
         computer(user, AI)
         display()
-        loop = check_result()
+        loop = check_result(user,AI)
     else:
         computer(user, AI)
         display()
         choice = int(input("\nEnter your choice: "))
         input_values(user,choice)        
-        loop = check_result()
+        loop = check_result(user,AI)
 
 
 
