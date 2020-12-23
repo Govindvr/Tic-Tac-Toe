@@ -1,7 +1,7 @@
-value = [' 'for i in range(9)]
-markp = ""
-markc = ""
-def instructions():
+value = [' 'for i in range(9)]            #List in which the input from both human and computer is stored
+markp = ""                                #Stores the mark of the player
+markc = ""                                #Stores the mark of the computer
+def instructions():                       #To display intruction and board layout at the begining
     print("\n\nChoose a cell numbered from 1 to 9 as below and play")
     print("\n\n\t\t\t1 | 2  | 3  ")
     print("\t\t\t----------")
@@ -10,14 +10,14 @@ def instructions():
     print("\t\t\t7 | 8  | 9  ")
     print("\n-------------------------------------------------------")
 
-def input_values(markp,markc,pos):
+def input_values(markp,markc,pos):         #Function to accept input from the player
     positon =  pos -1
     if value[positon]==markc:
         print("\t\t\tDON'T EVEN TRY, STUPID CHEATER!!!")
         exit(0)
     value[positon] = markp
 
-def computer(markp,markc):
+def computer(markp,markc):                #Function which plays the game as computer
     row1 = value[0:3]
     row2 = value[3:6]
     row3 = value[6:9]
@@ -35,7 +35,7 @@ def computer(markp,markc):
             else:
                 continue
 
-    def comp_logic(mark,id = 2):
+    def comp_logic(mark,id = 2):          #Function which analyse all possible winning moves and play accordingly
             if row1.count(mark)==2 and row1.count(" ") != 0:
                 scan(0,3,1)
             elif row2.count(mark)==2 and row2.count(" ") != 0:
@@ -69,7 +69,7 @@ def computer(markp,markc):
     if comp_logic(markc,1):
         comp_logic(markp)
        
-def check_result(markp,markc):
+def check_result(markp,markc):             #To check if any player won and to display winning message
     def who(w):
         if value[w] == markp:
                 print("\t\t\tSomthing went wrong, you won!")
@@ -96,7 +96,7 @@ def check_result(markp,markc):
         return False
     return True
         
-def display():
+def display():                          #To display the board with player moves
     print("\n")
     print("\t\t\t-------------")
     for i in range(0,7,3):
@@ -104,7 +104,9 @@ def display():
         print("\t\t\t-------------")
     print("\n-------------------------------------------------------")
 
-user=input("\n\t\tchoose your letter (X or O)")
+#Main body of the program 
+
+user=input("\n\t\tchoose your letter (X or O)")    #player choosing his character
 user = user.upper()
 if user == "X":
     AI = "O"
@@ -113,7 +115,7 @@ else:
 instructions()
 
 loop = True
-while(loop):
+while(loop):                                      
     if user == "X":
         choice = int(input("\nEnter your choice: "))
         input_values(user,AI,choice)
