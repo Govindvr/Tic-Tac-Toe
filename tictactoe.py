@@ -28,6 +28,12 @@ def computer(markp,markc):                #Function which plays the game as comp
     dia2 = [value[2],value[4],value[6]]
     corner = [0,2,6,8]
 
+    def attack_corner():
+        for i in corner:
+            if value[i]==" ":
+                value[i] = markc
+                break
+
     def scan(first,last,skip):
         for i in range(first,last,skip):
             if value[i] == " ":
@@ -55,15 +61,14 @@ def computer(markp,markc):                #Function which plays the game as comp
             else:
                 if id == 1:
                     return True
+                elif markc == "X":
+                    attack_corner()
                 elif value[4] == " ":
                     value[4]=markc
                 elif value.count(" ")==1:
                     value[value.index(" ")] = markc
                 else:
-                    for i in corner:
-                        if value[i]==" ":
-                            value[i] = markc
-                            break                    
+                    attack_corner()                   
                 return False
 
     if comp_logic(markc,1):
